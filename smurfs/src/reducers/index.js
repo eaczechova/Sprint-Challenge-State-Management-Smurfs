@@ -1,25 +1,28 @@
-import { FETCH_DATA, DATA_SUCCESS, DATA_ERROR } from '../actions';
+import { FETCH_DATA, DATA_SUCCESS, DATA_ERROR, POST_DATA } from '../actions';
 
-const initialState = {
+export const initialState = {
 	smurfs: [],
 	isLoading: false,
 	error: '',
 };
 
-export const rootReducer = (state = initialState, action) => {
+export const fetchReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_DATA:
 			return {
 				...state,
 				isLoading: true,
-				error: '',
+			};
+		case POST_DATA:
+			return {
+				...state,
+				smurfs: action.payload,
 			};
 		case DATA_SUCCESS:
 			return {
 				...state,
 				smurfs: action.payload,
 				isLoading: false,
-				error: '',
 			};
 		case DATA_ERROR:
 			return {
