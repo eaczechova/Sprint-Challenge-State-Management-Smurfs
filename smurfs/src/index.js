@@ -8,10 +8,10 @@ import thunk from 'redux-thunk';
 import { fetchReducer } from './reducers';
 
 const store = createStore(fetchReducer, applyMiddleware(thunk));
-
+const smurfsLength = store.getState().smurfs.length;
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<App smurfsLength={smurfsLength} />
 	</Provider>,
 	document.getElementById('root')
 );
